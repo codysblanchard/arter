@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	form
+		input(ng-model='name')
+		input(ng-model='email')
+		button(type='submit') save
+	.stream
+		.item(ng-repeat='s in stream')
+			s.name
+			s.content
+	h1 WELCOME
+	

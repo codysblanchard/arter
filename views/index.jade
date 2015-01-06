@@ -1,13 +1,17 @@
 extends layout
 
 block content
-	form
-		input(ng-model='name')
-		input(ng-model='email')
-		button(type='submit') save
-	.stream
-		.item(ng-repeat='s in stream')
-			s.name
-			s.content
-	h1 WELCOME
-	
+	.pure-g
+		.pure-u-1-2
+			h1 ARTER
+		.pure-u-1-2
+			form.pure-form
+				input(ng-model='name')
+				input(ng-model='email')
+				button.pure-button.pure-button-primary(type='submit') Save
+			.stream
+				.item(ng-repeat='s in stream')
+					s.name
+					s.content
+		
+		

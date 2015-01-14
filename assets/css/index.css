@@ -1,3 +1,18 @@
 .content-wrapper{
 	padding:2em;
+	margin-left:16.6667%;
+	/*
+	left:200px;
+	position:relative;
+	*/
+}
+#menu div.pure-menu{
+	height:5000px;
+}
+#menu{
+	position:fixed;
+	/*
+	width:200px;
+	left:200px;
+	margin-left:-200px;*/
 }

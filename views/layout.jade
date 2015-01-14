@@ -1,25 +1,35 @@
 doctype html
-html(ng-app='arter')
+html(ng-app='artie')
 	head
 		title= title
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		script(src='/socket.io/socket.io.js')
 		script(src='/js/angular.js')
 		script(src='/js/controllers.js')
-		script(src='/js/common.js')
+		script(src='/js/app.social.js')
 		link(rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css")
 		link(rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css")
 		link(rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
 		link(rel="stylesheet" href="/css/index.css")
 		block head
 	body(ng-controller='home')
-	.pure-menu.pure-menu-open.pure-menu-horizontal.pure-menu-fixed
-		a.pure-menu-heading Arter
-		ul
-			li.pure-menu
-				fb:login-button(scope="public_profile,email" onlogin="checkLoginState();")
-	br
-	br			
-	.content-wrapper
-		.content		
-			block content
+	.pure-g
+		#menu.pure-u-1-6
+			.pure-menu.pure-menu-open
+				a.pure-menu-heading Artie
+				ul
+					li#avatar(ng-show='user')
+							a
+								img(ng-src="{{user.image}}")
+					li.name(ng-show='user')
+							a {{user.name}}
+					li(ng-show='!user')
+						a(href='#' ng-click='menuLogin=!menuLogin') Log in
+					li.menu-item-divided(ng-show='menuLogin&&!user')
+						a
+							fb(app-id='1535462206712440')
+					li(ng-show='user')
+						a(href='#' onclick='fbLogout();') Log out
+		.content-wrapper.pure-u-5-6
+			.content
+				block content

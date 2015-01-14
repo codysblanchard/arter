@@ -1,14 +1,29 @@
-var arter = angular.module('arter',[]);
+var artie = angular.module('artie',['fb']);
 
-arter.run(['$rootScope','$window',
+artie.run(['$rootScope','$window',
 function($rootScope,$window){
-	$rootScope.user={};
 	
 }]);
 
-arter.controller('home',function($scope,$http){
-	$scope.name="cody";
-	$scope.email="csb@mct.co";
+artie.controller('home',function($scope,$http){
+	$scope.$watch(
+		'user',
+		function(val,old){
+			$http.post("/user/status",val)
+			.success(function(data,status,headers){
+				$scope.user.id=data._id;
+			});
+		}
+	);
+	$scope.post = function(data){
+		$scope.stream.push({name:$scope.user.name,content:data});
+		//$scope.$apply();
+		data={userID:$scope.user.id,content:data};
+		$http.post("/user/post",data)
+		.success(function(data,status,headers){
+			
+		});
+	};
 	$http.get("/stream").success(function(data){
 		$scope.stream=data;
 	});
